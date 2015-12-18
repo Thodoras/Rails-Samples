@@ -1,0 +1,28 @@
+// Place all the styles related to the Movies controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#add-button {
+	border-radius:23px;
+	width: 100%;
+}
+
+#sign-up {
+	border-radius:23px;
+	width: 120px
+}
+
+.block {
+	border: 1px solid black;
+	margin-bottom: 20px;
+	padding-left: 10px;
+}
+
+.submits-header {
+	margin-bottom: 30px;
+}
+
+.unvote {
+	float: right;
+	margin-right: 20px;
+}

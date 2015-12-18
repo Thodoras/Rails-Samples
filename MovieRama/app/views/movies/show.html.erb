@@ -1,0 +1,13 @@
+<div class="container">
+<h2><%= @movie.title %></h2>
+<p><%= @movie.created_at %></p>
+<p><%= @movie.description %></p>
+
+<%= link_to("Back", root_path)%>
+<% if user_signed_in? %>
+	<% if current_user.id == @movie.user.id%>
+		<%= link_to("Edit", edit_movie_path(@movie))%>
+		<%= link_to("Delete", movie_path(@movie), method: :destroy, data: {confirm: "Are you sure?"}) %>
+	<% end %>
+<% end %>
+</div>
