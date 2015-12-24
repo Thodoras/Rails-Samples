@@ -8,7 +8,7 @@ class NotificationMailer < ApplicationMailer
   def new_post(ip, vessel)
   	@ip = ip
   	@vessel = vessel
-    mail(to: "theodoretopol@gmail.com", subject: "Foo")
+    mail(to: "testappadm@mailinator.com", subject: "Foo")
   end
 
   def edit_post(ip, new_vessel, vessel, params)
@@ -16,6 +16,6 @@ class NotificationMailer < ApplicationMailer
   	@new_vessel = new_vessel
   	@vessel = vessel
   	@params = params
-  	mail(to: "theodoretopol@gmail.com", subject: "Foo")
+  	mail(to: "testappadm@mailinator.com", subject: "Foo")
   end
 end
