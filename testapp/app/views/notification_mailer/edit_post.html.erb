@@ -1,0 +1,18 @@
+<h1>Notification Edit Post</h1>
+
+
+<p>User IP: <%= @ip %></p>
+<% if @params[:title] != @vessel["title"]%>
+	<p>Title from: <%= @vessel["title"]%> to: <%= @params[:title]%></p>
+<%end%>
+<% if @params[:description] != @vessel["description"]%>
+	<p>Title from: <%= @vessel["description"]%> to: <%= @params[:description]%></p>
+<%end%>
+<% if @params[:daily_price].to_f != @vessel["daily_price"]%>
+	<p>Title from: <%= @vessel["daily_price"]%> to: <%= @params[:daily_price].to_f%></p>
+<%end%>
+<% if @params[:fee_pc].to_f != @vessel["fee_pc"]%>
+	<p>Title from: <%= @vessel["fee_pc"]%> to: <%= @params[:fee_pc].to_f%></p>
+<%end%>
+<%= link_to('Post', admin_vessel_url(@new_vessel)) %>
+

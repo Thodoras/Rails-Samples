@@ -9,6 +9,9 @@ class Admin::VesselsController < ApplicationController
     @vessels = Vessel.all
   end
 
+  def show
+  end
+
   # GET /vessels/new
   def new
     @vessel = Vessel.new

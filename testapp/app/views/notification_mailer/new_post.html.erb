@@ -1,0 +1,10 @@
+<h1>Notification New Post</h1>
+
+<p>User IP: <%= @ip %></p>
+<p>Title: <%= @vessel.title %></p>
+<p>Description: <%= @vessel.description %></p>
+<p>Daily Price: <%= @vessel.daily_price %></p>
+<p>Fee: <%= @vessel.fee_pc %></p>
+<p>Created: <%= @vessel.created_at %></p>
+
+<%= link_to('Post', admin_vessel_url(@vessel)) %>

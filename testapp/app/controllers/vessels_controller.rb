@@ -14,15 +14,20 @@ class VesselsController < ApplicationController
 
   # GET /vessels/1/edit
   def edit
+    @title = @vessel.title
+    @description = @vessel.description
   end
 
   # POST /vessels
   # POST /vessels.json
   def create
     @vessel = Vessel.new(vessel_params)
-
+    @ip = request.remote_ip
     respond_to do |format|
       if @vessel.save
+        if (current_admin.nil?)
+          NotificationMailer.new_post(@ip, @vessel).deliver_now()
+        end
         format.html { redirect_to vessels_url, notice: 'Vessel was successfully created.' }
         format.json { render :show, status: :created, location: @vessel }
       else
@@ -35,8 +40,14 @@ class VesselsController < ApplicationController
   # PATCH/PUT /vessels/1
   # PATCH/PUT /vessels/1.json
   def update
+    @ip = request.remote_ip
+    @old_vessel = @vessel.as_json()
     respond_to do |format|
       if @vessel.update(vessel_params)
+        @old_vessel["updated_at"] = @vessel.updated_at
+        if (current_admin.nil?)
+          NotificationMailer.edit_post(@ip, @vessel, @old_vessel, vessel_params).deliver_now()
+        end
         format.html { redirect_to vessels_url, notice: 'Vessel was successfully updated.' }
         format.json { render :show, status: :ok, location: @vessel }
       else

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :vessels, except: :show
 
   namespace :admin do
-    resources :vessels, except: :show
+    resources :vessels
   end
 
   root to: 'vessels#index'

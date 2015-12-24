@@ -1,0 +1,18 @@
+Notification Edit Post
+
+
+User IP: <%= @ip %>
+<% if @params[:title] != @vessel["title"]%>
+	Title from: <%= @vessel["title"]%> to: <%= @params[:title]%>
+<% end %>
+<% if @params[:description] != @vessel["description"]%>
+	Title from: <%= @vessel["description"]%> to: <%= @params[:description]%>
+<%end%>
+<% if @params[:daily_price].to_f != @vessel["daily_price"]%>
+	Title from: <%= @vessel["daily_price"]%> to: <%= @params[:daily_price].to_f%>
+<%end%>
+<% if @params[:fee_pc].to_f != @vessel["fee_pc"]%>
+	Title from: <%= @vessel["fee_pc"]%> to: <%= @params[:fee_pc].to_f%>
+<%end%>
+Updated: <%= @vessel["updated_at"] %>
+<%= admin_vessel_url(@new_vessel)%> 
