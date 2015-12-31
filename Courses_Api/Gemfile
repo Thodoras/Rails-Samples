@@ -51,3 +51,4 @@ group :production do
 end
 
 gem 'httparty', '0.13.5'
+gem 'rename'
