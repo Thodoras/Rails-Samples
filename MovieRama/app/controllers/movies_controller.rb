@@ -8,21 +8,21 @@ class MoviesController < ApplicationController
 	end
 
 	def upvote
-		#like
+		#like.
 
 		@movie.upvote_by(current_user)
 		redirect_to(:back)
 	end
 
 	def downvote
-  		#dislike
+  		#dislike.
 
   		@movie.downvote_by(current_user)
   		redirect_to(:back)
 	end
 
 	def unvote
-		#unvote
+		#unvote.
 		
 		@movie.unvote_by(current_user)
   		redirect_to(:back)
