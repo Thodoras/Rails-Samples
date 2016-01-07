@@ -3,23 +3,27 @@ class MoviesController < ApplicationController
 
 	def submits
 		# custom action for displaying the movies submited by a specific user.
+
 		@user = User.find(params[:user])
 	end
 
 	def upvote
 		#like
+
 		@movie.upvote_by(current_user)
 		redirect_to(:back)
 	end
 
 	def downvote
   		#dislike
+
   		@movie.downvote_by(current_user)
   		redirect_to(:back)
 	end
 
 	def unvote
 		#unvote
+		
 		@movie.unvote_by(current_user)
   		redirect_to(:back)
   	end
@@ -50,6 +54,9 @@ class MoviesController < ApplicationController
 	end
 
 	def edit
+		if current_user != @movie.user
+			redirect_to(root_path)
+		end
 	end
 
 	def update
