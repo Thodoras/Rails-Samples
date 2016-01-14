@@ -1,43 +1,27 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)\
+today = Date.today
+two_days_ago = Date.today - 2.days
+three_days_ago = Date.today - 3.days
+dates = [today, two_days_ago, three_days_ago]
 
+User.destroy_all
+TodoList.destroy_all
 
-User.create!([
-	{username: "Fiorina", password_digest: "123"},
-	{username: "Trump", password_digest: "123"},
-	{username: "Carson", password_digest: "123"},
-	{username: "Clinton", password_digest: "123"}
-])
+100.times { |index| TodoList.create! list_name: "List #{index}", list_due_date: dates.sample }
 
-Profile.create!([
-	{gender: "female", birth_year: 1954, first_name: "Carly", last_name: "Fiorina"},
-	{gender: "male", birth_year: 1946, first_name: "Donald", last_name: "Trump"},
-	{gender: "male", birth_year: 1951, first_name: "Ben", last_name: "Carson"},
-	{gender: "female", birth_year: 1947, first_name: "Hillary", last_name: "Clinton"}
-])
-
-
-users = User.all
-
-users.each do |user|
-	user.todo_lists.create!([
-		{list_due_date: Date.today + 1.year}
-	])
+TodoList.all.each do |list|
+  list.todo_items.create! [
+    { title: "Task 1", due_date: dates.sample, description: "very important task TEST", completed: false },
+    { title: "Task 2", due_date: dates.sample, description: "do something else TEST", completed: true},
+    { title: "Task 3", due_date: dates.sample, description: "learn Action Pack TEST", completed: true}
+  ]
 end
 
-lists = TodoList.all
+users = User.create! [
+  { username: "jim", password: "abc123" },
+  { username: "rich", password: "123abc" }
+]
 
-lists.each do |list|
-	list.todo_items.create!([
-		{due_date: Date.today + 1.year, title: "foo", description: "bar"},
-		{due_date: Date.today + 1.year, title: "foo", description: "bar"},
-		{due_date: Date.today + 1.year, title: "foo", description: "bar"},
-		{due_date: Date.today + 1.year, title: "foo", description: "bar"},
-		{due_date: Date.today + 1.year, title: "foo", description: "bar"}
-	])
+TodoList.all.each do |list|
+  list.user = users.sample
+  list.save!
 end
